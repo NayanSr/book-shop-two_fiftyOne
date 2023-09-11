@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./Cart.css";
 
 const Cart = (props) => {
@@ -10,7 +11,6 @@ const Cart = (props) => {
     totalDeliveryCharge += parseFloat(product.delivery);
   }
   const tax = (total * 0.07).toFixed(2);
-  console.log(typeof total);
   const grandTotal = total + totalDeliveryCharge + parseFloat(tax);
 
   return (

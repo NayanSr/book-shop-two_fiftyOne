@@ -24,9 +24,33 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    const getAddedProductsInCart = getShopingCard();
-    console.log(getAddedProductsInCart);
-  }, []);
+    const savedCart = [];
+    const localstorageCart = getShopingCard();
+    for (const id in localstorageCart) {
+      const matchedProductsWithLocalstorageId = products.find(
+        (pd) => parseInt(pd.id) === parseInt(id)
+      );
+      if (matchedProductsWithLocalstorageId) {
+        const quantity = localstorageCart[id];
+        matchedProductsWithLocalstorageId.quantity = quantity;
+        savedCart.push(matchedProductsWithLocalstorageId);
+      }
+      console.log(savedCart);
+    }
+    setAddedProductsInCart(savedCart);
+  }, [products]);
+
+  /*  useEffect(() => {
+    const getAddedProductsIdsInCart = getShopingCard();
+    for (const id in getAddedProductsIdsInCart) {
+      const addedProducts = products.find(
+        (pd) => parseInt(pd.id) === parseInt(id)
+      );
+      const quantity = getAddedProductsIdsInCart[id];
+      addedProducts.quantity = quantity;
+      console.log("pd", addedProducts);
+    }
+  }, [products]); */
 
   return (
     <div className="shop-container">
