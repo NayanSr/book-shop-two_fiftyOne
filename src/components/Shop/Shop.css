@@ -1,12 +1,12 @@
 .shop-container{
-display: flex;
+display: grid;
+grid-template-columns: 3fr 1fr;
 /* border: 1px solid slateblue; */
 width: 98vw;
 }
 
 .products-container{
-border: 1px solid greenyellow;
-flex-grow: 1;
+/* border: 1px solid greenyellow; */
 margin: 10px 20px;
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -14,9 +14,9 @@ gap: 20px;
 }
 
 .cart-container{
-border: 1px solid gold;
-width: 50%;
-height: 60vh;
-margin: 10px 20px;
-padding: 10px 20px;
+/* border: 1px solid gold; */
+/* height: 60vh; */
+/* margin: 10px 20px;
+padding: 10px 20px; */
+
 }

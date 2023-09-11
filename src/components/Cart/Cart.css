@@ -1,0 +1,24 @@
+.cart span{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart h4,p{
+  margin: 5px 20px;
+}
+
+#grand-total h5{
+/* font-size: 1em; */
+margin: 5px 20px;
+}
+
+.cart{
+  position: sticky;
+  top: 10px;
+  margin-top: 10px;
+  width: 100%;
+  height: 250px;
+  padding: 10px 0px 85px;
+  /* border: 1px solid red; */
+  background-color: rgb(252, 220, 133);
+}
