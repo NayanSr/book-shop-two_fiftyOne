@@ -3,6 +3,7 @@ import "./Shop.css";
 import { useEffect } from "react";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
+import { addToDb, getShopingCard } from "../../utility/fakedb";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,8 @@ const Shop = () => {
   const handleClickToAdd = (product) => {
     const newCartWithNewProduct = [...addedProductsInCart, product];
     setAddedProductsInCart(newCartWithNewProduct);
+    console.log(product.id);
+    addToDb(product.id);
     // console.log(newCartWithNewProduct);
   };
 
@@ -18,6 +21,11 @@ const Shop = () => {
     fetch("books.json")
       .then((res) => res.json())
       .then((data) => setProducts(data));
+  }, []);
+
+  useEffect(() => {
+    const getAddedProductsInCart = getShopingCard();
+    console.log(getAddedProductsInCart);
   }, []);
 
   return (
