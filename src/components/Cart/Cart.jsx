@@ -6,9 +6,12 @@ const Cart = (props) => {
 
   let total = 0;
   let totalDeliveryCharge = 0;
+  let totalQuantity = 0;
   for (const product of addedProductsInCart) {
-    total += parseFloat(product.price);
-    totalDeliveryCharge += parseFloat(product.delivery);
+    // product.quantity = product.quantity || 1;
+    total += parseFloat(product.price * product.quantity);
+    totalDeliveryCharge += parseFloat(product.delivery * product.quantity);
+    totalQuantity = totalQuantity + parseInt(product.quantity);
   }
   const tax = (total * 0.07).toFixed(2);
   const grandTotal = total + totalDeliveryCharge + parseFloat(tax);
@@ -16,7 +19,7 @@ const Cart = (props) => {
   return (
     <div className="cart">
       <h4>Order summary</h4>
-      <p>Order quantity: {addedProductsInCart.length}</p>
+      <p>Order quantity: {totalQuantity}</p>
       <span>
         <p>Total Price: </p>
         <p>$ {total.toFixed(2)}</p>

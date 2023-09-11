@@ -38,7 +38,7 @@ const Shop = () => {
       console.log(savedCart);
     }
     setAddedProductsInCart(savedCart);
-  }, [products]);
+  }, [products, addedProductsInCart]);
 
   /*  useEffect(() => {
     const getAddedProductsIdsInCart = getShopingCard();
