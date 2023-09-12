@@ -10,11 +10,26 @@ const Shop = () => {
   const [addedProductsInCart, setAddedProductsInCart] = useState([]);
 
   const handleClickToAdd = (product) => {
-    const newCartWithNewProduct = [...addedProductsInCart, product];
+    let newCart = [];
+
+    const exists = addedProductsInCart.find((pd) => pd.id === product.id);
+    if (!exists) {
+      product.quantity = 1;
+      newCart = [...addedProductsInCart, product];
+    } else {
+      product.quantity = product.quantity + 1;
+      const exceptNewProduct = products.filter((pd) => pd.id !== product.id);
+      newCart = [...exceptNewProduct, product];
+    }
+
+    setAddedProductsInCart(newCart);
+    addToDb(product.id);
+
+    /*     const newCartWithNewProduct = [...addedProductsInCart, product];
     setAddedProductsInCart(newCartWithNewProduct);
     console.log(product.id);
     addToDb(product.id);
-    // console.log(newCartWithNewProduct);
+    // console.log(newCartWithNewProduct); */
   };
 
   useEffect(() => {
@@ -38,19 +53,8 @@ const Shop = () => {
       console.log(savedCart);
     }
     setAddedProductsInCart(savedCart);
-  }, [products, addedProductsInCart]);
-
-  /*  useEffect(() => {
-    const getAddedProductsIdsInCart = getShopingCard();
-    for (const id in getAddedProductsIdsInCart) {
-      const addedProducts = products.find(
-        (pd) => parseInt(pd.id) === parseInt(id)
-      );
-      const quantity = getAddedProductsIdsInCart[id];
-      addedProducts.quantity = quantity;
-      console.log("pd", addedProducts);
-    }
-  }, [products]); */
+  }, [products]);
+  // }, [products, addedProductsInCart]);
 
   return (
     <div className="shop-container">
